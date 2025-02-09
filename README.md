@@ -1,3 +1,5 @@
+### 3 components ingestion/transformation/validation xử dụng để NLP bằng thuật toán KNN component transformation sẽ thực thi KNN trước khi qua sử lý 2 components ingestion và validation
+
 ### Network Security Projects For Phising Data
 
 Setup github secrets:
@@ -27,3 +29,4 @@ sudo sh get-docker.sh
 sudo usermod -aG docker ubuntu
 
 newgrp docker
+
