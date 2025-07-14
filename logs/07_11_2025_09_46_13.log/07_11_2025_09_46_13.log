@@ -1,0 +1,11 @@
+[ 2025-07-11 09:46:20,132 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-07-11 09:46:20,135 ] 107 dagshub - INFO - Accessing as Locvh
+[ 2025-07-11 09:46:20,512 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Locvh/API_ML_2 "HTTP/1.1 200 OK"
+[ 2025-07-11 09:46:20,865 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-07-11 09:46:20,866 ] 107 dagshub - INFO - Initialized MLflow to track repo "Locvh/API_ML_2"
+[ 2025-07-11 09:46:20,867 ] 107 dagshub - INFO - Repository Locvh/API_ML_2 initialized!
+[ 2025-07-11 09:46:20,867 ] 20 root - INFO - Initiate the data ingestion
+[ 2025-07-11 09:46:24,536 ] 222 root - WARNING - DMV detection skipped for aircraft: Required columns not found
+[ 2025-07-11 09:46:24,536 ] 222 root - WARNING - DMV detection skipped for networkdata: Required columns not found
+[ 2025-07-11 09:46:28,429 ] 222 root - WARNING - DMV detection skipped for aircraft: Required columns not found
+[ 2025-07-11 09:46:28,429 ] 222 root - WARNING - DMV detection skipped for networkdata: Required columns not found

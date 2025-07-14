@@ -74,7 +74,7 @@ def load_numpy_array_data(file_path: str) -> np.array:
         raise NetworkSecurityException(e, sys) from e
     
 
-# hyperparam
+
 def evaluate_models(X_train, y_train,X_test,y_test,models,param):
     try:
         report = {}

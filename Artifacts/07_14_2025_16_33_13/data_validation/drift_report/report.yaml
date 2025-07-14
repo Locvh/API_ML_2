@@ -1,0 +1,39 @@
+DMV_FLAG:
+  drift_status: false
+  p_value: 1.0
+Max_Volume_m:
+  drift_status: false
+  p_value: 0.9145691035648892
+Max_Weight_kg:
+  drift_status: false
+  p_value: 0.9504027942103085
+current_volume:
+  drift_status: false
+  p_value: 0.877479351684286
+current_weight:
+  drift_status: false
+  p_value: 0.06916897484383278
+item_volume:
+  drift_status: false
+  p_value: 0.9531123788531796
+item_weight:
+  drift_status: false
+  p_value: 0.747142673239642
+label:
+  drift_status: false
+  p_value: 1.0
+num_items_on_aircarft:
+  drift_status: false
+  p_value: 0.9288629293202687
+volume_left:
+  drift_status: false
+  p_value: 0.5757674092656752
+volume_ratio:
+  drift_status: false
+  p_value: 0.40618916804427285
+weight_left:
+  drift_status: false
+  p_value: 0.27385082888187895
+weight_ratio:
+  drift_status: false
+  p_value: 0.06545085541228535

@@ -3,12 +3,8 @@ import sys
 
 from networksecurity.exception.exception import NetworkSecurityException 
 from networksecurity.logging.logger import logging
-
 from networksecurity.entity.artifact_entity import DataTransformationArtifact,ModelTrainerArtifact
 from networksecurity.entity.config_entity import ModelTrainerConfig
-
-
-
 from networksecurity.utils.ml_utils.model.estimator import NetworkModel
 from networksecurity.utils.main_utils.utils import save_object,load_object
 from networksecurity.utils.main_utils.utils import load_numpy_array_data,evaluate_models
@@ -24,14 +20,16 @@ from sklearn.ensemble import (
     RandomForestClassifier,
 )
 import mlflow
-from urllib.parse import urlparse
+# from urllib.parse import urlparse
+
 
 import dagshub
 dagshub.init(repo_owner='Locvh', repo_name='API_ML_2', mlflow=True)
 
-# os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/krishnaik06/networksecurity.mlflow"
-# os.environ["MLFLOW_TRACKING_USERNAME"]="krishnaik06"
-# os.environ["MLFLOW_TRACKING_PASSWORD"]="7104284f1bb44ece21e0e2adb4e36a250ae3251f"
+os.environ["MLFLOW_TRACKING_URI"]="https://dagshub.com/Locvh/API_ML_2.mlflow"
+os.environ["MLFLOW_TRACKING_USERNAME"]="Locvh"
+os.environ["MLFLOW_TRACKING_PASSWORD"]="6ace8175dbe0347825f710613a326fc22ba5270e"
+
 
 
 
@@ -44,7 +42,8 @@ class ModelTrainer:
             raise NetworkSecurityException(e,sys)
         
     def track_mlflow(self,best_model,classificationmetric):
-        # mlflow.set_registry_uri("https://dagshub.com/krishnaik06/networksecurity.mlflow")
+        mlflow.set_tracking_uri("https://dagshub.com/Locvh/API_ML_2.mlflow")
+        mlflow.set_registry_uri("https://dagshub.com/Locvh/API_ML_2.mlflow")
         # tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         with mlflow.start_run():
             f1_score=classificationmetric.f1_score
@@ -105,6 +104,7 @@ class ModelTrainer:
             }
             
         }
+
         model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=x_test,y_test=y_test,
                                           models=models,param=params)
         
@@ -150,13 +150,7 @@ class ModelTrainer:
         return model_trainer_artifact
 
 
-        
 
-
-       
-    
-    
-        
     def initiate_model_trainer(self)->ModelTrainerArtifact:
         try:
             train_file_path = self.data_transformation_artifact.transformed_train_file_path

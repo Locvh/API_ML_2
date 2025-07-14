@@ -51,12 +51,11 @@ class NetworkDataExtract():
             raise NetworkSecurityException(e,sys)
         
 if __name__=='__main__':
-    FILE_PATH="/Users/vohuuloc/Documents/API_ML_2/Network_Data/phisingData.csv"
+    FILE_PATH="/Users/vohuuloc/Documents/API_ML_2/Network_Data/products_aircraft.csv"
     DATABASE="networkSecurity"
-    Collection="NetworkData"
+    Collection="NetworkSecurity"
     networkobj=NetworkDataExtract()
     records=networkobj.csv_to_json_convertor(file_path=FILE_PATH)
     print(records)
     no_of_records=networkobj.insert_data_mongodb(records,DATABASE,Collection)
     print(no_of_records)
-        

@@ -1,0 +1,10 @@
+[ 2025-07-13 16:39:17,311 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-07-13 16:39:17,322 ] 107 dagshub - INFO - Accessing as Locvh
+[ 2025-07-13 16:39:17,748 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Locvh/API_ML_2 "HTTP/1.1 200 OK"
+[ 2025-07-13 16:39:18,141 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-07-13 16:39:18,144 ] 107 dagshub - INFO - Initialized MLflow to track repo "Locvh/API_ML_2"
+[ 2025-07-13 16:39:18,145 ] 107 dagshub - INFO - Repository Locvh/API_ML_2 initialized!
+[ 2025-07-13 16:39:18,145 ] 20 root - INFO - Initiate the data ingestion
+[ 2025-07-13 16:39:36,715 ] 231 root - WARNING - DMV detection skipped for networkdata: Required columns not found
+[ 2025-07-13 16:39:36,715 ] 234 root - INFO - Skipping DMV detection for aircraft data
+[ 2025-07-13 16:39:36,715 ] 239 root - ERROR - Error in export_collection_as_dataframe: cannot access local variable 'df_networkdata' where it is not associated with a value
