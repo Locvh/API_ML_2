@@ -1,7 +1,0 @@
-[ 2025-07-13 16:29:49,955 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
-[ 2025-07-13 16:29:49,964 ] 107 dagshub - INFO - Accessing as Locvh
-[ 2025-07-13 16:29:50,569 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Locvh/API_ML_2 "HTTP/1.1 200 OK"
-[ 2025-07-13 16:29:51,386 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
-[ 2025-07-13 16:29:51,387 ] 107 dagshub - INFO - Initialized MLflow to track repo "Locvh/API_ML_2"
-[ 2025-07-13 16:29:51,387 ] 107 dagshub - INFO - Repository Locvh/API_ML_2 initialized!
-[ 2025-07-13 16:29:51,388 ] 20 root - INFO - Initiate the data ingestion

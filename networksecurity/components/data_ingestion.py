@@ -419,7 +419,11 @@ class DataIngestion:
                 df_product = df_product[df_product['product_name'].notna()]
 
                 records = []
+                # n_samples_per_label = 10000
+                # records_0 = []
+                # records_1 = []
                 while len(records) < 20000:
+                # while len(records_0) < n_samples_per_label or len(records_1) < n_samples_per_label:
                     aircarft = df_aircraft.sample(1).iloc[0]
                     num_items_on_aircarft = np.random.randint(0, 15)  # Số lượng sản phẩm trên máy bay
                     curr_weight = np.random.uniform(0, aircarft['Max_Weight_kg'] * 1.2)  # Cho vượt lên 120%
@@ -446,6 +450,17 @@ class DataIngestion:
                         'label': label,
                         'DMV_FLAG':1
                     }
+                #     if label == 0 and len(records_0) < n_samples_per_label:
+                #         records_0.append(record)
+                #     elif label == 1 and len(records_1) < n_samples_per_label:
+                #         records_1.append(record)
+                #     # Nếu đã đủ mỗi label thì thôi, khỏi append nữa
+
+                # # Ghép lại thành DataFrame tổng hợp
+                # df_ml = pd.DataFrame(records_0 + records_1)
+                # df_ml = df_ml.sample(frac=1).reset_index(drop=True)  # shuffle lại cho ngẫu nhiên
+
+
                     records.append(record)
 
                 df_ml = pd.DataFrame(records)

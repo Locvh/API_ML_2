@@ -7,7 +7,7 @@ import numpy as np
 import pickle
 
 from sklearn.metrics import r2_score
-from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import StratifiedKFold,GridSearchCV
 
 def read_yaml_file(file_path: str) -> dict:
     try:
@@ -83,6 +83,7 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
             model = list(models.values())[i]
             para=param[list(models.keys())[i]]
 
+            # cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
             gs = GridSearchCV(model,para,cv=3)
             gs.fit(X_train,y_train)
 

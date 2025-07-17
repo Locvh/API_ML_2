@@ -1,0 +1,30 @@
+[ 2025-07-15 22:50:51,313 ] 160 numexpr.utils - INFO - NumExpr defaulting to 8 threads.
+[ 2025-07-15 22:50:53,172 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-07-15 22:50:53,181 ] 107 dagshub - INFO - Accessing as Locvh
+[ 2025-07-15 22:50:53,683 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Locvh/API_ML_2 "HTTP/1.1 200 OK"
+[ 2025-07-15 22:50:54,093 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-07-15 22:50:54,096 ] 107 dagshub - INFO - Initialized MLflow to track repo "Locvh/API_ML_2"
+[ 2025-07-15 22:50:54,097 ] 107 dagshub - INFO - Repository Locvh/API_ML_2 initialized!
+[ 2025-07-15 22:50:54,097 ] 20 root - INFO - Initiate the data ingestion
+[ 2025-07-15 22:51:24,782 ] 491 root - INFO - Performed train test split on the dataframe
+[ 2025-07-15 22:51:24,782 ] 493 root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[ 2025-07-15 22:51:24,782 ] 501 root - INFO - Exporting train and test file path.
+[ 2025-07-15 22:51:24,784 ] 510 root - INFO - Exported train and test file path.
+[ 2025-07-15 22:51:24,784 ] 22 root - INFO - Data Initiation Completed
+[ 2025-07-15 22:51:24,786 ] 29 root - INFO - Initiate the data Validation
+[ 2025-07-15 22:51:24,787 ] 32 root - INFO - Required number of columns:2
+[ 2025-07-15 22:51:24,787 ] 33 root - INFO - Data frame has columns:13
+[ 2025-07-15 22:51:24,787 ] 32 root - INFO - Required number of columns:2
+[ 2025-07-15 22:51:24,787 ] 33 root - INFO - Data frame has columns:13
+[ 2025-07-15 22:51:24,792 ] 31 root - INFO - data Validation Completed
+[ 2025-07-15 22:51:24,793 ] 37 root - INFO - data Transformation started
+[ 2025-07-15 22:51:24,793 ] 241 root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[ 2025-07-15 22:51:24,793 ] 243 root - INFO - Starting data transformation
+[ 2025-07-15 22:51:24,795 ] 226 root - INFO - Entered get_data_trnasformer_object method of Trnasformation class
+[ 2025-07-15 22:51:24,795 ] 231 root - INFO - Initialise KNNImputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[ 2025-07-15 22:51:24,797 ] 46 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-07-15 22:51:24,797 ] 50 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-07-15 22:51:24,797 ] 46 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-07-15 22:51:24,798 ] 50 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-07-15 22:51:24,798 ] 41 root - INFO - data Transformation completed
+[ 2025-07-15 22:51:24,798 ] 44 root - INFO - Model Training sstared

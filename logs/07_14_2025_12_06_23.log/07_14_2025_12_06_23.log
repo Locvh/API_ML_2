@@ -1,7 +1,0 @@
-[ 2025-07-14 12:06:23,366 ] 160 numexpr.utils - INFO - NumExpr defaulting to 8 threads.
-[ 2025-07-14 12:06:25,570 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
-[ 2025-07-14 12:06:25,577 ] 107 dagshub - INFO - Accessing as Locvh
-[ 2025-07-14 12:06:25,983 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Locvh/API_ML_2 "HTTP/1.1 200 OK"
-[ 2025-07-14 12:06:26,371 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
-[ 2025-07-14 12:06:26,373 ] 107 dagshub - INFO - Initialized MLflow to track repo "Locvh/API_ML_2"
-[ 2025-07-14 12:06:26,374 ] 107 dagshub - INFO - Repository Locvh/API_ML_2 initialized!

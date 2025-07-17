@@ -22,7 +22,6 @@ from sklearn.ensemble import (
 import mlflow
 # from urllib.parse import urlparse
 
-
 import dagshub
 dagshub.init(repo_owner='Locvh', repo_name='API_ML_2', mlflow=True)
 
@@ -56,6 +55,8 @@ class ModelTrainer:
             mlflow.log_metric("precision",precision_score)
             mlflow.log_metric("recall_score",recall_score)
             mlflow.sklearn.log_model(best_model,"model")
+
+
             # Model registry does not work with file store
             # if tracking_url_type_store != "file":
 
@@ -105,6 +106,7 @@ class ModelTrainer:
             
         }
 
+         
         model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=x_test,y_test=y_test,
                                           models=models,param=params)
         
@@ -141,13 +143,14 @@ class ModelTrainer:
         save_object("final_model/model.pkl",best_model)
         
 
-        ## Model Trainer Artifact
+        # Model Trainer Artifact
         model_trainer_artifact=ModelTrainerArtifact(trained_model_file_path=self.model_trainer_config.trained_model_file_path,
                              train_metric_artifact=classification_train_metric,
                              test_metric_artifact=classification_test_metric
                              )
         logging.info(f"Model trainer artifact: {model_trainer_artifact}")
         return model_trainer_artifact
+        # return model_report
 
 
 
@@ -156,7 +159,7 @@ class ModelTrainer:
             train_file_path = self.data_transformation_artifact.transformed_train_file_path
             test_file_path = self.data_transformation_artifact.transformed_test_file_path
 
-            #loading training array and testing array
+            # #loading training array and testing array
             train_arr = load_numpy_array_data(train_file_path)
             test_arr = load_numpy_array_data(test_file_path)
 
@@ -166,7 +169,7 @@ class ModelTrainer:
                 test_arr[:, :-1],
                 test_arr[:, -1],
             )
-
+        
             model_trainer_artifact=self.train_model(x_train,y_train,x_test,y_test)
             return model_trainer_artifact
 
