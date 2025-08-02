@@ -1,5 +1,6 @@
 import os
 import sys
+import numpy as np
 
 from networksecurity.exception.exception import NetworkSecurityException 
 from networksecurity.logging.logger import logging
@@ -8,17 +9,24 @@ from networksecurity.entity.config_entity import ModelTrainerConfig
 from networksecurity.utils.ml_utils.model.estimator import NetworkModel
 from networksecurity.utils.main_utils.utils import save_object,load_object
 from networksecurity.utils.main_utils.utils import load_numpy_array_data,evaluate_models
-from networksecurity.utils.ml_utils.metric.classification_metric import get_classification_score
+# from networksecurity.utils.ml_utils.metric.classification_metric import get_classification_score
+from networksecurity.utils.ml_utils.metric.regression_metric import get_regression_score
 
-from sklearn.linear_model import LogisticRegression
+
+from sklearn.linear_model import LinearRegression
+# from statsmodels.tsa.arima.model import ARIMA
+from sklearn.svm import SVR
+from sklearn.neural_network import MLPRegressor
+from sklearn.ensemble import GradientBoostingRegressor
+
 from sklearn.metrics import r2_score
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import (
-    AdaBoostClassifier,
-    GradientBoostingClassifier,
-    RandomForestClassifier,
-)
+# from sklearn.neighbors import KNeighborsClassifier
+# from sklearn.tree import DecisionTreeClassifier
+# from sklearn.ensemble import (
+#     AdaBoostClassifier,
+#     GradientBoostingClassifier,
+#     RandomForestClassifier,
+# )
 import mlflow
 # from urllib.parse import urlparse
 
@@ -40,21 +48,26 @@ class ModelTrainer:
         except Exception as e:
             raise NetworkSecurityException(e,sys)
         
-    def track_mlflow(self,best_model,classificationmetric):
+    def track_mlflow(self,best_model,regressionmetric):
         mlflow.set_tracking_uri("https://dagshub.com/Locvh/API_ML_2.mlflow")
         mlflow.set_registry_uri("https://dagshub.com/Locvh/API_ML_2.mlflow")
         # tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
         with mlflow.start_run():
-            f1_score=classificationmetric.f1_score
-            precision_score=classificationmetric.precision_score
-            recall_score=classificationmetric.recall_score
+            rmse=regressionmetric.rmse
+            mae=regressionmetric.mae
+            mape=regressionmetric.mape
+            ioa=regressionmetric.ioa
+            ds=regressionmetric.ds
 
             
 
-            mlflow.log_metric("f1_score",f1_score)
-            mlflow.log_metric("precision",precision_score)
-            mlflow.log_metric("recall_score",recall_score)
-            mlflow.sklearn.log_model(best_model,"model")
+            mlflow.log_metric("rmse", rmse)
+            mlflow.log_metric("mae", mae)
+            mlflow.log_metric("mape", mape)
+            mlflow.log_metric("ioa", ioa)
+            mlflow.log_metric("ds", ds)
+
+            mlflow.sklearn.log_model(best_model, "model")
 
 
             # Model registry does not work with file store
@@ -72,39 +85,33 @@ class ModelTrainer:
         
     def train_model(self,X_train,y_train,x_test,y_test):
         models = {
-                "Random Forest": RandomForestClassifier(verbose=1),
-                "Decision Tree": DecisionTreeClassifier(),
-                "Gradient Boosting": GradientBoostingClassifier(verbose=1),
-                "Logistic Regression": LogisticRegression(verbose=1),
-                "AdaBoost": AdaBoostClassifier(),
+                "Multiple Linear Regression": LinearRegression(),
+                # "ARIMA": None,  # ARIMA will be initialized during fitting due to its specific requirements
+                # "Support Vector Regression": SVR(verbose=True),
+                # "Neural Network": MLPRegressor( verbose=True,early_stopping=True,max_iter=100,random_state=42),
+                # "Gradient Boosting Regression Tree": GradientBoostingRegressor( verbose=True,n_iter_no_change=5,validation_fraction=0.1,random_state=42),
             }
         params={
-            "Decision Tree": {
-                'criterion':['gini', 'entropy', 'log_loss'],
-                # 'splitter':['best','random'],
-                # 'max_features':['sqrt','log2'],
-            },
-            "Random Forest":{
-                # 'criterion':['gini', 'entropy', 'log_loss'],
-                
-                # 'max_features':['sqrt','log2',None],
-                'n_estimators': [8,16,32,128,256]
-            },
-            "Gradient Boosting":{
-                # 'loss':['log_loss', 'exponential'],
-                'learning_rate':[.1,.01,.05,.001],
-                'subsample':[0.6,0.7,0.75,0.85,0.9],
-                # 'criterion':['squared_error', 'friedman_mse'],
-                # 'max_features':['auto','sqrt','log2'],
-                'n_estimators': [8,16,32,64,128,256]
-            },
-            "Logistic Regression":{},
-            "AdaBoost":{
-                'learning_rate':[.1,.01,.001],
-                'n_estimators': [8,16,32,64,128,256]
-            }
-            
+            "Multiple Linear Regression": {},
+            # "ARIMA": {'order': [(5, 1, 0), (2, 1, 2), (4, 1, 1)]},
+            # "Support Vector Regression": {
+            #     'kernel': ['linear',  'rbf'],
+            #     # 'kernel': ['linear'],
+            #     'C': [1, 10],
+            #     'gamma': ['scale']
+            # },
+            # "Neural Network": {
+            #     'hidden_layer_sizes': [(10,), (50,)],
+            #     'learning_rate_init': [0.01, 0.001],
+            #     'alpha': [0.0001, 0.001, 0.01] 
+            # },
+            # "Gradient Boosting Regression Tree": {
+            #     'learning_rate': [0.01, 0.05],
+            #     'subsample': [ 0.7,  0.9],
+            #     'n_estimators': [32, 64]
+            # }
         }
+
 
          
         model_report:dict=evaluate_models(X_train=X_train,y_train=y_train,X_test=x_test,y_test=y_test,
@@ -121,16 +128,18 @@ class ModelTrainer:
         best_model = models[best_model_name]
         y_train_pred=best_model.predict(X_train)
 
-        classification_train_metric=get_classification_score(y_true=y_train,y_pred=y_train_pred)
+        regression_train_metric=get_regression_score(y_true=y_train,y_pred=y_train_pred)
+
+        print('regression_train_metric',regression_train_metric.rmse)
         
         ## Track the experiements with mlflow
-        self.track_mlflow(best_model,classification_train_metric)
+        self.track_mlflow(best_model,regression_train_metric)
 
 
         y_test_pred=best_model.predict(x_test)
-        classification_test_metric=get_classification_score(y_true=y_test,y_pred=y_test_pred)
+        regression_test_metric=get_regression_score(y_true=y_test,y_pred=y_test_pred)
 
-        self.track_mlflow(best_model,classification_test_metric)
+        self.track_mlflow(best_model,regression_test_metric)
 
         preprocessor = load_object(file_path=self.data_transformation_artifact.transformed_object_file_path)
             
@@ -145,12 +154,11 @@ class ModelTrainer:
 
         # Model Trainer Artifact
         model_trainer_artifact=ModelTrainerArtifact(trained_model_file_path=self.model_trainer_config.trained_model_file_path,
-                             train_metric_artifact=classification_train_metric,
-                             test_metric_artifact=classification_test_metric
+                             train_metric_artifact=regression_train_metric,
+                             test_metric_artifact=regression_test_metric
                              )
         logging.info(f"Model trainer artifact: {model_trainer_artifact}")
         return model_trainer_artifact
-        # return model_report
 
 
 
@@ -169,7 +177,7 @@ class ModelTrainer:
                 test_arr[:, :-1],
                 test_arr[:, -1],
             )
-        
+
             model_trainer_artifact=self.train_model(x_train,y_train,x_test,y_test)
             return model_trainer_artifact
 

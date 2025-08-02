@@ -1,0 +1,29 @@
+[ 2025-08-03 02:28:38,391 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-08-03 02:28:38,397 ] 107 dagshub - INFO - Accessing as Locvh
+[ 2025-08-03 02:28:38,841 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Locvh/API_ML_2 "HTTP/1.1 200 OK"
+[ 2025-08-03 02:28:39,245 ] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[ 2025-08-03 02:28:39,246 ] 107 dagshub - INFO - Initialized MLflow to track repo "Locvh/API_ML_2"
+[ 2025-08-03 02:28:39,247 ] 107 dagshub - INFO - Repository Locvh/API_ML_2 initialized!
+[ 2025-08-03 02:28:39,247 ] 20 root - INFO - Initiate the data ingestion
+[ 2025-08-03 02:28:53,814 ] 130 root - INFO - Performed train test split on the dataframe
+[ 2025-08-03 02:28:53,814 ] 132 root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[ 2025-08-03 02:28:53,814 ] 140 root - INFO - Exporting train and test file path.
+[ 2025-08-03 02:28:53,818 ] 149 root - INFO - Exported train and test file path.
+[ 2025-08-03 02:28:53,818 ] 22 root - INFO - Data Initiation Completed
+[ 2025-08-03 02:28:53,820 ] 29 root - INFO - Initiate the data Validation
+[ 2025-08-03 02:28:53,822 ] 32 root - INFO - Required number of columns:2
+[ 2025-08-03 02:28:53,822 ] 33 root - INFO - Data frame has columns:18
+[ 2025-08-03 02:28:53,822 ] 32 root - INFO - Required number of columns:2
+[ 2025-08-03 02:28:53,822 ] 33 root - INFO - Data frame has columns:18
+[ 2025-08-03 02:28:53,833 ] 31 root - INFO - data Validation Completed
+[ 2025-08-03 02:28:53,833 ] 37 root - INFO - data Transformation started
+[ 2025-08-03 02:28:53,833 ] 63 root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[ 2025-08-03 02:28:53,833 ] 65 root - INFO - Starting data transformation
+[ 2025-08-03 02:28:53,835 ] 48 root - INFO - Entered get_data_trnasformer_object method of Trnasformation class
+[ 2025-08-03 02:28:53,835 ] 53 root - INFO - Initialise KNNImputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[ 2025-08-03 02:28:53,838 ] 46 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-08-03 02:28:53,839 ] 50 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-08-03 02:28:53,839 ] 46 root - INFO - Entered the save_object method of MainUtils class
+[ 2025-08-03 02:28:53,839 ] 50 root - INFO - Exited the save_object method of MainUtils class
+[ 2025-08-03 02:28:53,839 ] 40 root - INFO - data Transformation completed
+[ 2025-08-03 02:28:53,839 ] 43 root - INFO - Model Training sstared

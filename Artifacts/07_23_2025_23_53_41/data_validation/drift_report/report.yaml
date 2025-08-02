@@ -1,0 +1,54 @@
+bkvol:
+  drift_status: true
+  p_value: 0.03319133867946712
+bkwt:
+  drift_status: false
+  p_value: 0.11561611994204521
+days_until_departure:
+  drift_status: false
+  p_value: 0.1786536338329463
+delta_vol:
+  drift_status: false
+  p_value: 0.1786536338329463
+height:
+  drift_status: false
+  p_value: 0.06113242924758657
+is_dmv:
+  drift_status: false
+  p_value: 1.0
+length:
+  drift_status: false
+  p_value: 0.40244856201811274
+name_product:
+  drift_status: false
+  p_value: 0.965630361299131
+product_type_arm:
+  drift_status: false
+  p_value: 0.9999992134210484
+product_type_avi:
+  drift_status: false
+  p_value: 0.9818006019365708
+product_type_dgr:
+  drift_status: false
+  p_value: 0.9998401392923549
+product_type_gen:
+  drift_status: false
+  p_value: 0.9874680138859596
+product_type_hum:
+  drift_status: false
+  p_value: 0.999999999999861
+product_type_per:
+  drift_status: false
+  p_value: 0.999999999999861
+product_type_val:
+  drift_status: false
+  p_value: 0.9999999903153731
+product_type_vun:
+  drift_status: false
+  p_value: 0.999999999999861
+rcsvol:
+  drift_status: true
+  p_value: 0.04338509792540036
+width:
+  drift_status: false
+  p_value: 0.21900641648731334

@@ -6,7 +6,7 @@ import pandas as pd
 """
 defining common constant variable for training pipeline
 """
-TARGET_COLUMN = "label"
+TARGET_COLUMN = "bkvol"
 PIPELINE_NAME: str = "API_ML_2"
 ARTIFACT_DIR: str = "Artifacts"
 FILE_NAME: str = "data_products_aircraft.csv"
@@ -26,7 +26,7 @@ MODEL_FILE_NAME = "model.pkl"
 Data Ingestion related constant start with DATA_INGESTION VAR NAME
 """
 DATA_INGESTION_COLLECTION_NAME_AIRCRAFTDATA: str = "AircraftData"
-DATA_INGESTION_COLLECTION_NAME_NETWORKDATA: str = "NetworkSecurity"
+DATA_INGESTION_COLLECTION_NAME_NETWORKDATA: str = "Products_Aircraft"
 DATA_INGESTION_DATABASE_NAME: str = "networkSecurity"
 DATA_INGESTION_DIR_NAME: str = "data_ingestion"
 DATA_INGESTION_FEATURE_STORE_DIR: str = "feature_store"

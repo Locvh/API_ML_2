@@ -37,7 +37,6 @@ if __name__=='__main__':
         logging.info("data Transformation started")
         data_transformation=DataTransformation(data_validation_artifact,data_transformation_config)
         data_transformation_artifact=data_transformation.initiate_data_transformation()
-        print(data_transformation_artifact)
         logging.info("data Transformation completed")
 
         # model_trainer

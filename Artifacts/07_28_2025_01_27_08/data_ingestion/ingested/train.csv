@@ -1,0 +1,5 @@
+product_qty,bkwt,length,width,height,days_until_departure,bkvol,rcsvol,diff,DMV_flag,product_type_arm,product_type_avi,product_type_dgr,product_type_gen,product_type_hum,product_type_per,product_type_val,product_type_vun
+4.0,625.0,20.0,13.0,17.0,1,4420.0,4420.0,0.0,0,0,0,0,0,0,0,1,0
+1.0,154.0,18.0,15.0,9.0,1,2430.0,2320.0,0.04741379310344827,0,0,0,0,0,1,0,0,0
+1.0,1000.0,30.0,20.0,18.0,1,10800.0,10800.0,0.0,0,0,1,0,0,0,0,0,0
+1.0,371.0,26.0,26.0,4.0,2,2704.0,2704.0,0.0,0,0,1,0,0,0,0,0,0

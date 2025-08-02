@@ -51,9 +51,9 @@ class NetworkDataExtract():
             raise NetworkSecurityException(e,sys)
         
 if __name__=='__main__':
-    FILE_PATH="/Users/vohuuloc/Documents/API_ML_2/Network_Data/products_aircraft.csv"
+    FILE_PATH="/Users/vohuuloc/Documents/API_ML_2/Network_Data/output_products.csv"
     DATABASE="networkSecurity"
-    Collection="NetworkSecurity"
+    Collection="Products_Aircraft"
     networkobj=NetworkDataExtract()
     records=networkobj.csv_to_json_convertor(file_path=FILE_PATH)
     print(records)

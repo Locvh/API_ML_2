@@ -27,11 +27,11 @@ from networksecurity.utils.ml_utils.model.estimator import NetworkModel
 
 client = pymongo.MongoClient(mongo_db_url, tlsCAFile=ca)
 
-from networksecurity.constant.training_pipeline import DATA_INGESTION_COLLECTION_NAME
-from networksecurity.constant.training_pipeline import DATA_INGESTION_DATABASE_NAME
+# from networksecurity.constant.training_pipeline import DATA_INGESTION_COLLECTION_NAME
+# from networksecurity.constant.training_pipeline import DATA_INGESTION_DATABASE_NAME
 
-database = client[DATA_INGESTION_DATABASE_NAME]
-collection = database[DATA_INGESTION_COLLECTION_NAME]
+# database = client[DATA_INGESTION_DATABASE_NAME]
+# collection = database[DATA_INGESTION_COLLECTION_NAME]
 
 app = FastAPI()
 origins = ["*"]
@@ -67,6 +67,8 @@ async def predict_route(request: Request,file: UploadFile = File(...)):
         #print(df)
         preprocesor=load_object("final_model/preprocessor.pkl")
         final_model=load_object("final_model/model.pkl")
+        print('preprocesor',preprocesor)
+        print('final_model',final_model)
         network_model = NetworkModel(preprocessor=preprocesor,model=final_model)
         print(df.iloc[0])
         y_pred = network_model.predict(df)
