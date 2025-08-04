@@ -68,7 +68,7 @@ class ModelTrainer:
             mlflow.log_metric("ds", ds)
 
             mlflow.sklearn.log_model(best_model, "model")
-
+        
 
             # Model registry does not work with file store
             # if tracking_url_type_store != "file":
@@ -130,8 +130,6 @@ class ModelTrainer:
 
         regression_train_metric=get_regression_score(y_true=y_train,y_pred=y_train_pred)
 
-        print('regression_train_metric',regression_train_metric.rmse)
-        
         ## Track the experiements with mlflow
         self.track_mlflow(best_model,regression_train_metric)
 
@@ -177,7 +175,6 @@ class ModelTrainer:
                 test_arr[:, :-1],
                 test_arr[:, -1],
             )
-
             model_trainer_artifact=self.train_model(x_train,y_train,x_test,y_test)
             return model_trainer_artifact
 

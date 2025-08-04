@@ -73,13 +73,13 @@ class DataIngestion:
 
                 # Tính rcsvol và phát hiện DMV
                 for key, group in data.groupby(group_cols):
-                    mean_bkvol = group['rcsvol'].mean()
+                    mean_rcvol = group['rcsvol'].mean()
 
                     # Gán rcsvol là trung bình bkvol của nhóm
-                    data.loc[group.index, 'bkvol']= mean_bkvol
+                    data.loc[group.index, 'bkvol']= mean_rcvol
 
                     # Tính phần trăm chênh lệch và đánh dấu DMV
-                    diff = np.abs(group['rcsvol'] - mean_bkvol) / mean_bkvol
+                    diff = np.abs(group['rcsvol'] - mean_rcvol) / mean_rcvol
                     data.loc[group.index, 'diff'] = diff
 
                     data.loc[group.index, 'DMV_flag'] = (diff > 0.3).astype(int)
@@ -93,16 +93,10 @@ class DataIngestion:
 
                 data['product_type'] = data[group_cols].apply(lambda row: group2type[tuple(row)], axis=1)
                 data = pd.get_dummies(data, columns=['product_type'])
+                # product_type_cols = [col for col in data.columns if col.startswith('product_type_')]
+                # data[product_type_cols] = data[product_type_cols].astype(int)
                 data.drop(columns=['product_name'], inplace=True)
-                
-                # unique_keys = list(data.groupby(group_cols).groups.keys())
-                # choices = ['gen', 'val', 'per', 'avi', 'dgr', 'arm', 'vun', 'hum']
-                # np.random.seed(123)
-                # group2type = {key: np.random.choice(choices, np.random.randint(1, 4), replace=False).tolist() for key in unique_keys}
-
-                # data['product_type'] = data[group_cols].apply(lambda row: group2type[tuple(row)], axis=1)
-                # data = data.explode('product_type', ignore_index=True)
-                # data = pd.get_dummies(data, columns=['product_type'])
+        
 
                 return data
             
